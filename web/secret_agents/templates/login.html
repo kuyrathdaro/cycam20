@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        img {
+            width: 500;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        {% if data.denied %}
+        <img src="static/img/ushallnotpass.jpg" />
+        {% elif data.close %}
+        <img src="static/img/soclose.jpg" />
+        {% else %}
+        <img src="static/img/hackerman.jpg" />
+        {% endif %}
+        <h4>{{ data.msg }}</h4>
+    </div>
+</body>
+
+</html>

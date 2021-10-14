@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Secret Agents</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Roboto Slab', sans-serif;
+        }
+
+        .draw-border {
+            box-shadow: inset 0 0 0 4px #58afd1;
+            color: #58afd1;
+            -webkit-transition: color 0.25s 0.0833333333s;
+            transition: color 0.25s 0.0833333333s;
+            position: relative;
+        }
+
+        .draw-border::before,
+        .draw-border::after {
+            border: 0 solid transparent;
+            box-sizing: border-box;
+            content: '';
+            pointer-events: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .draw-border::before {
+            border-bottom-width: 4px;
+            border-left-width: 4px;
+        }
+
+        .draw-border::after {
+            border-top-width: 4px;
+            border-right-width: 4px;
+        }
+
+        .draw-border:hover {
+            color: #ffe593;
+        }
+
+        .draw-border:hover::before,
+        .draw-border:hover::after {
+            border-color: #ffe593;
+            -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+            transition: border-color 0s, width 0.25s, height 0.25s;
+            width: 100%;
+            height: 100%;
+        }
+
+        .draw-border:hover::before {
+            -webkit-transition-delay: 0s, 0s, 0.25s;
+            transition-delay: 0s, 0s, 0.25s;
+        }
+
+        .draw-border:hover::after {
+            -webkit-transition-delay: 0s, 0.25s, 0s;
+            transition-delay: 0s, 0.25s, 0s;
+        }
+
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1.5;
+            font: 700 1rem 'Roboto Slab', sans-serif;
+            padding: 1em 2em;
+            letter-spacing: 0.05rem;
+        }
+
+        .btn:focus {
+            outline: 2px dotted #55d7dc;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 350px;
+        }
+
+        #header {
+            align-self: center;
+        }
+
+        #button {
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div id="header">
+            <h1>Welcome to the Super Secret Agents official site!</h1>
+            <p>Only super secret agents will be able to enter...will you?</p>
+            <p>Here's the secret: actual secret agents have their OWN BROWSERS!!!!! NOT POSERS</p>
+            <p>Will it let you in? Enter!</p>
+        </div>
+        <div id="button">
+            <form action="/login" method="POST">
+                <button class="btn draw-border">Let Me In</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

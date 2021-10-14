@@ -1,0 +1,5 @@
+host = 'mysqldb'
+user = 'root'
+password = 'sup3rs3cr3t'
+database = 'supersecret'
+auth_plugin = 'mysql_native_password'

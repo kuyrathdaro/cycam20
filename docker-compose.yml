@@ -1,0 +1,58 @@
+version: '3.0'
+services: 
+  fsociety:
+    container_name: fsociety
+    build:
+      context: web/fsociety
+      dockerfile: Dockerfile
+    image: fsociety
+    ports:
+      - "8000:80"
+    restart: always
+  secret_agents:
+    container_name: secret_agents
+    build:
+      context: web/secret_agents
+      dockerfile: Dockerfile
+    image: secret_agents
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    restart: always
+  baby_pwn:
+    build: pwn/baby_pwn
+    container_name: baby_pwn
+    image: baby_pwn
+    volumes: 
+        - ./pwn/baby_pwn/share:/home/pwn:ro
+        - ./pwn/baby_pwn/xinetd:/etc/xinetd.d/xinetd:ro
+        - ./pwn/baby_pwn/tmp:/tmp:ro
+    ports:
+        - "60001:8888"
+    expose:
+        - "8888"
+    restart: always
+  system_health_check:
+    container_name: system_health_check
+    build:
+      context: pwn/system_health_check
+      dockerfile: Dockerfile
+    image: system_health_check
+    ports:
+      - "1024:1024"
+    restart: always
+  mysqldb:
+    container_name: mysqldb
+    build:
+      context: web/mysqldb
+      dockerfile: Dockerfile
+    image: mysqldb
+    environment:
+      MYSQL_DATABASE: supersecret
+      MYSQL_ROOT_PASSWORD: sup3rs3cr3t
+    ports:
+      - "3306:3306"
+    restart: always 
